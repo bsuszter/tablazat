@@ -1,0 +1,58 @@
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 24px;
+}
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 24px;
+  align-items: start;
+}
+.panel button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: white;
+}
+.panel button:hover {
+  background: #f5f5f5;
+}
+
+.cell {
+  fill: #f6f6f6;
+  stroke: #666;
+  stroke-width: 2;
+}
+.gridline {
+  stroke: #666;
+  stroke-width: 2;
+}
+
+.active-cell {
+  fill: #ffeb99 !important;
+}
+.active-row rect.cell[data-row="2"] {
+  fill: #cde8ff !important;
+}
+.active-col rect.cell[data-col="2"] {
+  fill: #ffd1dc !important;
+}
+.active-header rect.cell[data-row="0"] {
+  fill: #d9f7be !important;
+}
+.active-grid .gridline {
+  stroke: #ff6a00 !important;
+  stroke-width: 4;
+}
+
+svg {
+  max-width: 600px;
+  height: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
