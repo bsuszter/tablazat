@@ -1,43 +1,45 @@
-const svg = document.getElementById('tbl');
-const panel = document.querySelector('.panel');
+const buttons = document.querySelectorAll('.controls button');
+const table = document.getElementById('demoTable');
+const bodyRows = table.tBodies[0].rows; // csak a TBODY sorai
 
-function clearAll() {
-  svg.classList.remove('active-row', 'active-col', 'active-header', 'active-grid');
-  document.querySelectorAll('.cell').forEach(c => c.classList.remove('active-cell'));
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    clearHighlights();
+    const target = btn.dataset.target;
+
+    if (target === 'reset') return;
+
+    switch (target) {
+      case 'sor':
+        if (bodyRows[1]) bodyRows[1].classList.add('highlight-sor');
+        break;
+
+      case 'oszlop':
+        for (const row of bodyRows) {
+          const cell = row.cells[1];
+          if (cell) cell.classList.add('highlight-oszlop');
+        }
+        break;
+
+      case 'cella':
+        if (bodyRows[1] && bodyRows[1].cells[2]) {
+          bodyRows[1].cells[2].classList.add('highlight-cella');
+        }
+        break;
+
+      case 'fejlec':
+        const headCell = table.tHead?.rows[0]?.cells[0];
+        if (headCell) headCell.classList.add('highlight-fejlec');
+        break;
+    }
+  });
+});
+
+function clearHighlights() {
+  [...table.querySelectorAll('tbody tr')].forEach(tr =>
+    tr.classList.remove('highlight-sor')
+  );
+  [...table.querySelectorAll('td, th')].forEach(cell =>
+    cell.classList.remove('highlight-oszlop', 'highlight-cella', 'highlight-fejlec')
+  );
 }
-
-panel.addEventListener('click', (e) => {
-  const action = e.target.dataset.action;
-  if (!action) return;
-
-  if (action === 'reset') {
-    clearAll();
-    return;
-  }
-
-  clearAll();
-  switch (action) {
-    case 'cell':
-      document.getElementById('example-cell').classList.add('active-cell');
-      break;
-    case 'row':
-      svg.classList.add('active-row');
-      break;
-    case 'col':
-      svg.classList.add('active-col');
-      break;
-    case 'header':
-      svg.classList.add('active-header');
-      break;
-    case 'grid':
-      svg.classList.add('active-grid');
-      break;
-  }
-});
-
-svg.addEventListener('click', (e) => {
-  if (e.target.matches('.cell')) {
-    clearAll();
-    e.target.classList.add('active-cell');
-  }
-});
