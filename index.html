@@ -1,71 +1,76 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Táblázat szemléltető</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Táblázat szemléltető</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <h1>Táblázat szemléltető</h1>
+    <h1>Táblázat szemléltető</h1>
 
-  <table id="demoTable">
-    <thead>
-      <tr>
-        <th colspan="4">Fejléc</th>
-      </tr>
-      <tr>
-        <th>Oszlop 1</th>
-        <th>Oszlop 2</th>
-        <th>Oszlop 3</th>
-        <th>Oszlop 4</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cella 1</td>
-        <td>Cella 2</td>
-        <td>Cella 3</td>
-        <td>Cella 4</td>
-      </tr>
-      <tr>
-        <td>Cella 5</td>
-        <td>Cella 6</td>
-        <td>Cella 7</td>
-        <td>Cella 8</td>
-      </tr>
-      <tr>
-        <td>Cella 9</td>
-        <td>Cella 10</td>
-        <td>Cella 11</td>
-        <td>Cella 12</td>
-      </tr>
-    </tbody>
-  </table>
+    <table id="demoTable">
+        <thead>
+            <tr>
+                <th colspan="4">Fejléc</th>
+            </tr>
+            <tr>
+                <th>Oszlop 1</th>
+                <th>Oszlop 2</th>
+                <th>Oszlop 3</th>
+                <th>Oszlop 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cella 1</td>
+                <td>Cella 2</td>
+                <td>Cella 3</td>
+                <td>Cella 4</td>
+            </tr>
+            <tr>
+                <td>Cella 5</td>
+                <td>Cella 6</td>
+                <td>Cella 7</td>
+                <td>Cella 8</td>
+            </tr>
+            <tr>
+                <td>Cella 9</td>
+                <td>Cella 10</td>
+                <td>Cella 11</td>
+                <td>Cella 12</td>
+            </tr>
+        </tbody>
+    </table>
 
-<div class="controls">
-  <h3>Kiemelés</h3>
-  <button onclick="highlightRow(2)">Sor</button>
-  <button onclick="highlightColumn(2)">Oszlop</button>
-  <button onclick="highlightCell(1,1)">Cella</button>
-  <button onclick="highlightHeader()">Fejléc</button>
-  <button onclick="highlightRange()">Tartomány</button>
-  <button onclick="resetTable()">Visszaállítás</button>
-</div>
+    <div class="controls">
+        <h3>Kiemelés</h3>
+        <button onclick="highlightRow(2)">Sor</button>
+        <button onclick="highlightColumn(2)">Oszlop</button>
+        <button onclick="highlightCell(1,1)">Cella</button>
+        <button onclick="highlightHeader()">Fejléc</button>
+        <button onclick="highlightRange()">Tartomány</button>
+        <button onclick="resetTable()">Visszaállítás</button>
+    </div>
 
-<div class="controls">
-  <h3>Szegélyek - az egész táblázatra vonatkoztatva</h3>
-  <button onclick="setBorder('none')">Nincs szegély</button>
-  <button onclick="setBorder('outer')">Külső szegély</button>
-  <button onclick="setBorder('inner')">Belső szegély</button>
-  <button onclick="setBorder('all')">Minden szegély</button>
-  <button onclick="setBorder('left')">Bal szegély</button>
-  <button onclick="setBorder('right')">Jobb szegély</button>
-  <button onclick="setBorder('top')">Felső szegély</button>
-  <button onclick="setBorder('bottom')">Alsó szegély</button>
-</div>
+    <div class="controls">
+        <h3>Szegélyek - az egész táblázatra vonatkoztatva</h3>
+        <button onclick="setBorder('none')">Nincs szegély</button>
+        <button onclick="setBorder('outer')">Külső szegély</button>
+        <button onclick="setBorder('inner')">Belső szegély</button>
+        <button onclick="setBorder('all')">Minden szegély</button>
+    </div>
+    <div class="controls">
+        <button onclick="setBorder('left')">Bal szegély</button>
+        <button onclick="setBorder('right')">Jobb szegély</button>
+        <button onclick="setBorder('top')">Felső szegély</button>
+        <button onclick="setBorder('bottom')">Alsó szegély</button>
+    </div>
 
 
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
