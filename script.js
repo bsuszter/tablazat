@@ -1,45 +1,66 @@
-const buttons = document.querySelectorAll('.controls button');
-const table = document.getElementById('demoTable');
-const bodyRows = table.tBodies[0].rows; // csak a TBODY sorai
+const table = document.getElementById("demoTable");
 
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    clearHighlights();
-    const target = btn.dataset.target;
-
-    if (target === 'reset') return;
-
-    switch (target) {
-      case 'sor':
-        if (bodyRows[1]) bodyRows[1].classList.add('highlight-sor');
-        break;
-
-      case 'oszlop':
-        for (const row of bodyRows) {
-          const cell = row.cells[1];
-          if (cell) cell.classList.add('highlight-oszlop');
-        }
-        break;
-
-      case 'cella':
-        if (bodyRows[1] && bodyRows[1].cells[2]) {
-          bodyRows[1].cells[2].classList.add('highlight-cella');
-        }
-        break;
-
-      case 'fejlec':
-        const headCell = table.tHead?.rows[0]?.cells[0];
-        if (headCell) headCell.classList.add('highlight-fejlec');
-        break;
+function resetTable() {
+  // minden celláról levesszük a kiemelést
+  for (let row of table.rows) {
+    for (let cell of row.cells) {
+      cell.classList.remove("highlight", "range");
     }
-  });
-});
+  }
+  // a tábláról levesszük a szegély osztályokat
+  table.classList.remove(
+    "table-border-none",
+    "table-border-outer",
+    "table-border-inner",
+    "table-border-all",
+    "table-border-left",
+    "table-border-right",
+    "table-border-top",
+    "table-border-bottom"
+  );
+}
 
-function clearHighlights() {
-  [...table.querySelectorAll('tbody tr')].forEach(tr =>
-    tr.classList.remove('highlight-sor')
-  );
-  [...table.querySelectorAll('td, th')].forEach(cell =>
-    cell.classList.remove('highlight-oszlop', 'highlight-cella', 'highlight-fejlec')
-  );
+
+function highlightRow(rowIndex) {
+  resetTable();
+  let row = table.rows[rowIndex];
+  for (let cell of row.cells) {
+    cell.classList.add("highlight");
+  }
+}
+
+function highlightColumn(colIndex) {
+  resetTable();
+  for (let i = 0; i < table.rows.length; i++) {
+    if (table.rows[i].cells[colIndex]) {
+      table.rows[i].cells[colIndex].classList.add("highlight");
+    }
+  }
+}
+
+function highlightCell(rowIndex, colIndex) {
+  resetTable();
+  let cell = table.rows[rowIndex].cells[colIndex];
+  cell.classList.add("highlight");
+}
+
+function highlightHeader() {
+  resetTable();
+  for (let cell of table.tHead.rows[0].cells) {
+    cell.classList.add("highlight");
+  }
+}
+
+function highlightRange() {
+  resetTable();
+  for (let i = 2; i <= 3; i++) {
+    for (let j = 1; j <= 2; j++) {
+      table.rows[i].cells[j].classList.add("range");
+    }
+  }
+}
+
+function setBorder(type) {
+  resetTable();
+  table.classList.add(`table-border-${type}`);
 }
